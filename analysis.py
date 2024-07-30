@@ -1,34 +1,36 @@
 import functions as f
 import pandas as pd
 
-# test purposes
-import importlib
-importlib.reload(f)
 
-# load data
-df1 = f.load('data/zomato.csv')
+# 0. load data
+df = f.load('data/zomato.csv')
 
-
-df1.head()
-
-df1.shape # 7527, 21
-
-df1.loc[df1["Average Cost for two"] > 100000, ["Average Cost for two", "Restaurant Name", "City", "Locality", "Currency"]].sort_values('Average Cost for two', ascending=False)
-
-def dataframe():
-
-    price25kk = df1.loc[df1["Average Cost for two"] > 10000000]
-    
-    return df1.drop(price25kk.index)
-    
-
-# df1.dtypes # streamlit está printando essas duas linhas 
-
+# 1. data visualization
+df.head()
+df.shape                      # 7527, 21
+# df1.dtypes                  # streamlit displays these infos, must comment
 # df1[df1.isna()].count()     #
 # df1[df1.isnull()].count()   # no NULL/NaN data :)
 
-# object data type
-# cols_obj = [col for col in df1.columns if df1[col].dtype == object]
 
-# average cost for two and coordinates (long, lat)
-# avg_coord = df1[['Average Cost for two', 'Longitude', 'Latitude']]
+# 2. outliers
+df.loc[df["Average Cost for two"] > 100000, ["Average Cost for two", "Restaurant Name", "City", "Locality", "Currency"]].sort_values('Average Cost for two', ascending=False)
+
+filter = df['Average Cost for two'] > 10000000
+
+df1 = f.cleanDataFrame(filter, df) # 1 row removed, 25kk dollar price 
+
+
+
+# ----------------------
+
+def DataFrame():
+    '''
+    function to return the final DataFrame to main.py
+    '''
+
+    return df1
+
+# ----------------------
+    
+
