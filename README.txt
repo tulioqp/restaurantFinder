@@ -8,6 +8,8 @@ data comes from "Zomato Restaurants - Autoupdated dataset"
 
 read more infos at: https://www.kaggle.com/datasets/akashram/zomato-restaurants-autoupdated-dataset/
 
+you can find the it here: https://restaurantfinder.streamlit.app/ or here: https://tulioqp.github.io/mypage/
+
 
 
 have a nice day! :)
